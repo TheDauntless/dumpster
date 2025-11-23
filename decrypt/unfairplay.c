@@ -27,7 +27,7 @@ static int unprotect(int f, uint8_t *dupe,
                                header->cputype, header->cpusubtype);
   if (error) {
     perror("mremap_encrypted");
-    printf("Please wait 1 second and try it again.\n");
+    fprintf(stderr, "Please wait 1 second and try it again.\n");
     munmap(base, info->cryptsize);
     return 1;
   }
@@ -72,7 +72,7 @@ static uint8_t *map(const char *path, bool mutable, size_t *size,
 
 int main(int argc, char *argv[]) {
   if (argc < 3) {
-    printf("Usage: %s src dest\n", argv[0]);
+    fprintf(stderr, "Usage: %s src dest\n", argv[0]);
     return 1;
   }
 
@@ -139,7 +139,7 @@ int main(int argc, char *argv[]) {
   munmap(base, base_size);
   munmap(dupe, dupe_size);
 
-  printf("Succeeded in decrypting the binary.\n");
+  fprintf(stderr, "Succeeded in decrypting the binary.\n");
 
   return 0;
 }
