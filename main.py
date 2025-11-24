@@ -62,7 +62,7 @@ class Job:
             yield zi.filename[len("Payload/") :]
 
     def run(self, host: str):
-        # subprocess.run(["ideviceinstaller", "install", self.filename], check=True)
+        subprocess.run(["ideviceinstaller", "install", self.filename], check=True)
 
         # get all app container
         xml = subprocess.check_output(["ideviceinstaller", "list", "--xml", "--user"])
